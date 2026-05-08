@@ -6,7 +6,7 @@
 
 ## 📸 Preview
 
-> **🔗 [Portifolio]([https://joaoestreano.github.io](https://fatec-jacarei-dsm-portfolio.github.io/ra2581392423022/))**
+> **🔗 [Portifolio]([fatec-jacarei-dsm-portfolio.github.io])**
 
 ---
 
