@@ -1,0 +1,479 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>João Estreano — Desenvolvedor de Software</title>
+<meta name="description" content="Portfólio de João Estreano, estudante de DSM na Fatec Jacareí.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;600;700;800&family=Space+Mono:wght@400;700&display=swap" rel="stylesheet">
+<style>
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+  :root {
+    --bg:#0a0a0a; --bg2:#111111; --bg3:#1a1a1a;
+    --border:rgba(255,255,255,0.08); --border2:rgba(255,255,255,0.14);
+    --text:#f0f0f0; --muted:#777; --accent:#e8ff47; --r:10px;
+    --font:'Syne',sans-serif; --mono:'Space Mono',monospace;
+  }
+  html { scroll-behavior: smooth; }
+  body { background:var(--bg); color:var(--text); font-family:var(--font); overflow-x:hidden; }
+  nav {
+    position:sticky; top:0; z-index:50;
+    display:flex; align-items:center; justify-content:space-between;
+    padding:0 2rem; height:52px;
+    background:rgba(10,10,10,0.92); border-bottom:1px solid var(--border); backdrop-filter:blur(12px);
+  }
+  .logo { font-weight:800; font-size:14px; color:var(--accent); }
+  .nav-links { display:flex; gap:1.5rem; }
+  .nav-links a { font-size:12px; color:var(--muted); text-decoration:none; transition:color .2s; }
+  .nav-links a:hover { color:var(--text); }
+  @media(max-width:560px){ .nav-links{display:none;} }
+  .wrap { max-width:860px; margin:0 auto; padding:0 2rem; }
+  section { padding:5rem 0; }
+  .divider { height:1px; background:var(--border); max-width:860px; margin:0 auto; }
+  .tag { font-family:var(--mono); font-size:11px; color:var(--accent); letter-spacing:2px; margin-bottom:1rem; }
+  h2 { font-size:clamp(1.5rem,4vw,2rem); font-weight:800; margin-bottom:2rem; line-height:1.1; }
+  #hero { padding:6rem 0 3.5rem; }
+  .hero-sup { font-family:var(--mono); font-size:11px; color:var(--accent); letter-spacing:2px; margin-bottom:1.25rem; }
+  .hero-name { font-size:clamp(2.8rem,9vw,5rem); font-weight:800; line-height:1; letter-spacing:-2px; margin-bottom:1rem; }
+  .hero-name span { color:var(--accent); }
+  .hero-bio { font-size:15px; color:var(--muted); max-width:440px; line-height:1.75; margin-bottom:2rem; }
+  .btns { display:flex; gap:10px; flex-wrap:wrap; }
+  .btn { display:inline-flex; align-items:center; gap:6px; padding:9px 18px; border-radius:8px; font-size:13px; font-weight:600; text-decoration:none; transition:all .2s; font-family:var(--font); }
+  .btn-solid { background:var(--accent); color:#0a0a0a; }
+  .btn-solid:hover { background:#d4e83f; }
+  .btn-ghost { border:1px solid var(--border2); color:var(--text); }
+  .btn-ghost:hover { border-color:var(--accent); color:var(--accent); }
+  .about-grid { display:grid; grid-template-columns:1fr 1fr; gap:2rem; }
+  @media(max-width:600px){ .about-grid{grid-template-columns:1fr;} }
+  .about-p { font-size:14px; line-height:1.85; color:#bbb; }
+  .about-p strong { color:var(--text); }
+  .chips { display:flex; flex-direction:column; gap:10px; }
+  .chip { background:var(--bg3); border:1px solid var(--border); border-radius:var(--r); padding:.85rem 1.1rem; }
+  .chip-label { font-family:var(--mono); font-size:10px; color:var(--muted); letter-spacing:1px; margin-bottom:3px; }
+  .chip-value { font-size:13px; font-weight:600; }
+  .stack-grid { display:grid; grid-template-columns:repeat(auto-fit,minmax(190px,1fr)); gap:10px; }
+  .stack-box { background:var(--bg2); border:1px solid var(--border); border-radius:var(--r); padding:1.1rem; }
+  .stack-cat { font-family:var(--mono); font-size:10px; color:var(--accent); letter-spacing:1.5px; margin-bottom:.85rem; }
+  .pills { display:flex; flex-wrap:wrap; gap:5px; }
+  .pill { background:var(--bg3); border:1px solid var(--border); border-radius:5px; padding:3px 9px; font-size:11px; color:var(--muted); }
+  .proj-grid { display:grid; gap:14px; }
+  .proj { background:var(--bg2); border:1px solid var(--border); border-radius:var(--r); padding:1.4rem; transition:border-color .2s; }
+  .proj:hover { border-color:var(--border2); }
+  .proj-head { display:flex; justify-content:space-between; align-items:flex-start; gap:.75rem; margin-bottom:.6rem; }
+  .proj-name { font-size:15px; font-weight:700; }
+  .proj-badge { font-family:var(--mono); font-size:10px; background:rgba(232,255,71,.1); color:var(--accent); border:1px solid rgba(232,255,71,.2); border-radius:4px; padding:2px 7px; white-space:nowrap; }
+  .proj-desc { font-size:13px; color:var(--muted); line-height:1.65; margin-bottom:.85rem; }
+  .proj-tech { display:flex; flex-wrap:wrap; gap:5px; margin-bottom:.85rem; }
+  .proj-tech span { font-family:var(--mono); font-size:10px; color:#666; background:var(--bg3); border-radius:4px; padding:2px 7px; }
+  .proj-link { font-family:var(--mono); font-size:11px; color:var(--accent); text-decoration:none; }
+  .proj-link:hover { text-decoration:underline; }
+  .timeline { display:flex; flex-direction:column; }
+  .tl-item { display:grid; grid-template-columns:110px 1fr; gap:1.5rem; padding:1.4rem 0; border-bottom:1px solid var(--border); }
+  .tl-item:last-child { border-bottom:none; }
+  @media(max-width:560px){ .tl-item{grid-template-columns:1fr; gap:.4rem;} }
+  .tl-period { font-family:var(--mono); font-size:11px; color:var(--muted); padding-top:2px; }
+  .tl-role { font-size:14px; font-weight:700; margin-bottom:3px; }
+  .tl-company { font-size:12px; color:var(--accent); margin-bottom:5px; }
+  .tl-desc { font-size:12px; color:var(--muted); line-height:1.65; }
+  .tl-badge { display:inline-block; font-family:var(--mono); font-size:9px; border:1px solid var(--border2); border-radius:3px; padding:1px 6px; color:var(--muted); margin-left:7px; vertical-align:middle; }
+
+  /* ── CAROUSEL ── */
+  .carousel-wrap { position:relative; }
+  .carousel {
+    display:flex; gap:14px; overflow-x:auto;
+    scroll-snap-type:x mandatory; scroll-behavior:smooth;
+    -webkit-overflow-scrolling:touch; padding-bottom:12px;
+    scrollbar-width:none;
+  }
+  .carousel::-webkit-scrollbar { display:none; }
+  .cert-card {
+    flex:0 0 260px; scroll-snap-align:start;
+    background:var(--bg2); border:1px solid var(--border);
+    border-radius:var(--r); overflow:hidden; transition:border-color .2s; cursor:pointer;
+  }
+  .cert-card:hover { border-color:var(--border2); }
+  .cert-img-wrap {
+    width:100%; aspect-ratio:4/3; background:var(--bg3);
+    overflow:hidden; display:flex; align-items:center; justify-content:center;
+  }
+  .cert-img-wrap img {
+    width:100%; height:100%; object-fit:cover; transition:transform .3s;
+  }
+  .cert-card:hover .cert-img-wrap img { transform:scale(1.03); }
+  .cert-placeholder {
+    width:100%; height:100%; display:flex; flex-direction:column;
+    align-items:center; justify-content:center; gap:8px; color:var(--muted);
+  }
+  .cert-placeholder svg { opacity:.4; }
+  .cert-placeholder span { font-family:var(--mono); font-size:10px; opacity:.5; }
+  .cert-info { padding:.9rem 1rem; }
+  .cert-name { font-size:13px; font-weight:700; margin-bottom:3px; line-height:1.3; }
+  .cert-meta { font-family:var(--mono); font-size:10px; color:var(--muted); }
+  .carousel-btn {
+    position:absolute; top:50%; transform:translateY(calc(-50% - 12px));
+    width:34px; height:34px; background:var(--bg2); border:1px solid var(--border2);
+    border-radius:50%; color:var(--text); font-size:14px; cursor:pointer;
+    display:flex; align-items:center; justify-content:center;
+    transition:background .2s, border-color .2s; z-index:2;
+  }
+  .carousel-btn:hover { background:var(--bg3); border-color:var(--accent); color:var(--accent); }
+  .carousel-btn.prev { left:-17px; }
+  .carousel-btn.next { right:-17px; }
+  @media(max-width:600px){ .carousel-btn{display:none;} }
+  .carousel-dots { display:flex; justify-content:center; gap:6px; margin-top:1.25rem; }
+  .dot {
+    width:6px; height:6px; border-radius:50%; background:var(--border2);
+    cursor:pointer; transition:background .2s, transform .2s; border:none; padding:0;
+  }
+  .dot.active { background:var(--accent); transform:scale(1.3); }
+
+  /* ── LIGHTBOX ── */
+  .lightbox {
+    display:none; position:fixed; inset:0;
+    background:rgba(0,0,0,.92); z-index:200;
+    align-items:center; justify-content:center; padding:1rem;
+  }
+  .lightbox.open { display:flex; }
+  .lightbox img {
+    max-width:90vw; max-height:88vh;
+    border-radius:var(--r); object-fit:contain;
+    box-shadow:0 0 60px rgba(0,0,0,.8);
+    display:block;
+  }
+  .lightbox-close {
+    position:absolute; top:1rem; right:1.25rem;
+    background:var(--bg2); border:1px solid var(--border2);
+    color:var(--text); border-radius:8px;
+    width:36px; height:36px; font-size:18px; cursor:pointer;
+    display:flex; align-items:center; justify-content:center;
+  }
+  .lightbox-close:hover { border-color:var(--accent); color:var(--accent); }
+
+  .contact-grid { display:grid; grid-template-columns:repeat(auto-fit,minmax(190px,1fr)); gap:10px; }
+  .contact-card { background:var(--bg2); border:1px solid var(--border); border-radius:var(--r); padding:1.1rem; display:flex; align-items:center; gap:10px; text-decoration:none; transition:border-color .2s; }
+  .contact-card:hover { border-color:var(--accent); }
+  .contact-icon { width:34px; height:34px; background:var(--bg3); border-radius:7px; display:flex; align-items:center; justify-content:center; flex-shrink:0; }
+  .contact-lbl { font-family:var(--mono); font-size:10px; color:var(--muted); margin-bottom:2px; }
+  .contact-val { font-size:12px; font-weight:600; color:var(--text); word-break:break-all; }
+  footer { text-align:center; padding:2rem; font-family:var(--mono); font-size:11px; color:var(--muted); border-top:1px solid var(--border); }
+</style>
+</head>
+<body>
+
+<nav>
+  <span class="logo">JE.</span>
+  <div class="nav-links">
+    <a href="#sobre">sobre</a>
+    <a href="#stack">stack</a>
+    <a href="#projetos">projetos</a>
+    <a href="#experiencia">experiência</a>
+    <a href="#certificados">certificados</a>
+    <a href="#contato">contato</a>
+  </div>
+</nav>
+
+<div class="wrap">
+  <section id="hero">
+    <p class="hero-sup">// desenvolvedor de software</p>
+    <h1 class="hero-name">João<br><span>Estreano</span></h1>
+    <p class="hero-bio">Estudante de Desenvolvimento de Software Multiplataforma na Fatec Jacareí. Apaixonado por construir soluções que conectam hardware e software.</p>
+    <div class="btns">
+      <a href="https://github.com/joaoestreano" target="_blank" class="btn btn-solid">GitHub</a>
+      <a href="https://linkedin.com/in/joao-estreano" target="_blank" class="btn btn-ghost">LinkedIn</a>
+      <a href="mailto:joaovictornog12@gmail.com" class="btn btn-ghost">Contato</a>
+    </div>
+  </section>
+</div>
+
+<div class="divider"></div>
+
+<div class="wrap">
+  <section id="sobre">
+    <p class="tag">// 01 — sobre</p>
+    <h2>Quem sou eu</h2>
+    <div class="about-grid">
+      <p class="about-p">
+        Sou estudante de <strong>Desenvolvimento de Software Multiplataforma</strong> na Fatec Jacareí
+        e trabalho como <strong>Aprendiz no TI Help Desk</strong> da Atento.
+        Tenho interesse em desenvolvimento web, mobile e prototipagem com ESP32 e Arduino.
+        Estou construindo projetos que mostram meu crescimento técnico na área.
+      </p>
+      <div class="chips">
+        <div class="chip"><div class="chip-label">localização</div><div class="chip-value">Jacareí, SP — Brasil</div></div>
+        <div class="chip"><div class="chip-label">formação</div><div class="chip-value">DSM · Fatec Jacareí</div></div>
+        <div class="chip"><div class="chip-label">disponibilidade</div><div class="chip-value" style="color:var(--accent)">● Aberto a oportunidades</div></div>
+      </div>
+    </div>
+  </section>
+</div>
+
+<div class="divider"></div>
+
+<div class="wrap">
+  <section id="stack">
+    <p class="tag">// 02 — stack tecnológica</p>
+    <h2>Tecnologias</h2>
+    <div class="stack-grid">
+      <div class="stack-box"><div class="stack-cat">frontend</div><div class="pills"><span class="pill">React</span><span class="pill">Next.js</span><span class="pill">TypeScript</span><span class="pill">JavaScript</span><span class="pill">Tailwind</span></div></div>
+      <div class="stack-box"><div class="stack-cat">backend</div><div class="pills"><span class="pill">Node.js</span><span class="pill">PostgreSQL</span><span class="pill">SQL</span><span class="pill">Supabase</span></div></div>
+      <div class="stack-box"><div class="stack-cat">mobile</div><div class="pills"><span class="pill">React Native</span><span class="pill">Expo</span></div></div>
+      <div class="stack-box"><div class="stack-cat">hardware & embarcados</div><div class="pills"><span class="pill">ESP32</span><span class="pill">Arduino</span><span class="pill">C++</span></div></div>
+      <div class="stack-box"><div class="stack-cat">ferramentas</div><div class="pills"><span class="pill">Git</span><span class="pill">GitHub</span><span class="pill">Figma</span><span class="pill">VS Code</span></div></div>
+      <div class="stack-box"><div class="stack-cat">outros</div><div class="pills"><span class="pill">Shell Script</span><span class="pill">Linux</span></div></div>
+    </div>
+  </section>
+</div>
+
+<div class="divider"></div>
+
+<div class="wrap">
+  <section id="projetos">
+    <p class="tag">// 03 — projetos</p>
+    <h2>O que construí</h2>
+    <div class="proj-grid">
+      <div class="proj">
+        <div class="proj-head"><span class="proj-name">Projeto Scrum</span><span class="proj-badge">acadêmico · web</span></div>
+        <p class="proj-desc"> um curso interativo que ensine a metodologia Scrum, cobrindo seus princípios, práticas e papel dos membros da equipe.</p>
+        <div class="proj-tech"><span>Html</span><span>Css</span><span>JavaScript</span></div>
+        <a href="https://github.com/Capydev-jac/Capydev---1DSM" target="_blank" class="proj-link">→ ver repositório</a>
+      </div>
+      <div class="proj">
+        <div class="proj-head"><span class="proj-name">Projeto Ignis</span><span class="proj-badge">acadêmico · web</span></div>
+        <p class="proj-desc"> O IGNIS é uma plataforma web desenvolvida para facilitar o acesso a informações sobre queimadas e incêndios florestais.</p>
+        <div class="proj-tech"><span>React</span><span>TypeScript</span><span>Vite</span></div>
+        <a href="https://github.com/Capydev-jac/Projeto-Ignis" target="_blank" class="proj-link">→ ver repositório</a>
+      </div>
+      <div class="proj">
+        <div class="proj-head"><span class="proj-name">Projeto Aetheris</span><span class="proj-badge">acadêmico · web</span></div>
+        <p class="proj-desc"> Aplicação Web para a visualização e comparação de dados geo-espaciais.</p>
+        <div class="proj-tech"><span>JavaScript</span><span>TypeScript</span><span>Html</span></div>
+        <a href="https://github.com/Capydev-jac/Projeto-Aetheris" target="_blank" class="proj-link">→ ver repositório</a>
+      </div>
+      <div class="proj">
+        <div class="proj-head"><span class="proj-name">Projeto Salus</span><span class="proj-badge">acadêmico · IoT · Mobile</span></div>
+        <p class="proj-desc"> Sistema Inteligente de Gerenciamento e Dispensação de Medicamentos com Integração IoT e Aplicativo Móvel.</p>
+        <div class="proj-tech"><span>TypeScript</span><span>Expo</span><span>C++</span></div>
+        <a href="https://github.com/Capydev-jac/Projeto-Salus" target="_blank" class="proj-link">→ ver repositório</a>
+      </div>
+      <div class="proj">
+        <div class="proj-head"><span class="proj-name">App Scholar</span><span class="proj-badge">acadêmico · mobile</span></div>
+        <p class="proj-desc">Sistema mobile de gestão acadêmica para o curso DSM. Gerencia disciplinas, notas e atividades do semestre.</p>
+        <div class="proj-tech"><span>TypeScript</span><span>React Native</span><span>Expo</span></div>
+        <a href="https://github.com/joaoestreano" target="_blank" class="proj-link">→ ver repositório</a>
+      </div>
+      <div class="proj">
+        <div class="proj-head"><span class="proj-name">Projetos Arduino / ESP32</span><span class="proj-badge">individual · hardware</span></div>
+        <p class="proj-desc">Coleção de protótipos com ESP32 e Arduino explorando IoT, sensores e comunicação entre hardware e software.</p>
+        <div class="proj-tech"><span>C++</span><span>ESP32</span><span>Arduino</span></div>
+        <a href="https://github.com/joaoestreano" target="_blank" class="proj-link">→ ver repositório</a>
+      </div>
+    </div>
+  </section>
+</div>
+
+<div class="divider"></div>
+
+<div class="wrap">
+  <section id="experiencia">
+    <p class="tag">// 04 — experiência & formação</p>
+    <h2>Trajetória</h2>
+    <div class="timeline">
+      <div class="tl-item">
+        <div class="tl-period">2025 — atual</div>
+        <div>
+          <div class="tl-role">Aprendiz — TI Help Desk <span class="tl-badge">profissional</span></div>
+          <div class="tl-company">Atento</div>
+          <div class="tl-desc">Suporte técnico em ambiente corporativo, gerenciamento de chamados, manutenção de workstations e desenvolvimento de ferramentas internas.</div>
+        </div>
+      </div>
+      <div class="tl-item">
+        <div class="tl-period">2024 — atual</div>
+        <div>
+          <div class="tl-role">Desenvolvimento de Software Multiplataforma <span class="tl-badge">formação</span></div>
+          <div class="tl-company">Fatec Jacareí</div>
+          <div class="tl-desc">Tecnologia em DSM com foco em web, mobile, banco de dados e engenharia de software.</div>
+        </div>
+      </div>
+    </div>
+  </section>
+</div>
+
+<div class="divider"></div>
+
+<!-- CERTIFICADOS -->
+<div class="wrap">
+  <section id="certificados">
+    <p class="tag">// 05 — certificados</p>
+    <h2>Cursos & Certificações</h2>
+    <div class="carousel-wrap">
+      <button class="carousel-btn prev" onclick="scrollCarousel(-1)" aria-label="Anterior">&#8592;</button>
+      <button class="carousel-btn next" onclick="scrollCarousel(1)"  aria-label="Próximo">&#8594;</button>
+
+      <div class="carousel" id="carousel">
+
+        <!-- ✅ CADA CARD: onclick e src devem apontar para o MESMO arquivo -->
+
+        <div class="cert-card" onclick="openLightbox('./src/assets/certs/Certificado 01_page-0001.jpg')">
+          <div class="cert-img-wrap">
+            <img src="./src/assets/certs/Certificado 01_page-0001.jpg" alt="Certificado 1" onerror="this.parentElement.innerHTML=placeholderSVG()"/>
+          </div>
+          <div class="cert-info">
+            <div class="cert-meta">Alura · 2026</div>
+          </div>
+        </div>
+
+        <div class="cert-card" onclick="openLightbox('./src/assets/certs/Certificado 02_page-0001.jpg')">
+          <div class="cert-img-wrap">
+            <img src="./src/assets/certs/Certificado 02_page-0001.jpg" alt="Certificado 2" onerror="this.parentElement.innerHTML=placeholderSVG()"/>
+          </div>
+          <div class="cert-info">
+            <div class="cert-meta">Alura · 2026</div>
+          </div>
+        </div>
+
+        <div class="cert-card" onclick="openLightbox('./src/assets/certs/Certificado 03_page-0001.jpg')">
+          <div class="cert-img-wrap">
+            <img src="./src/assets/certs/Certificado 03_page-0001.jpg" alt="Certificado 3" onerror="this.parentElement.innerHTML=placeholderSVG()"/>
+          </div>
+          <div class="cert-info">
+            <div class="cert-meta">Alura · 2026</div>
+          </div>
+        </div>
+
+        <div class="cert-card" onclick="openLightbox('./src/assets/certs/Certificado 04_page-0001.jpg')">
+          <div class="cert-img-wrap">
+            <img src="./src/assets/certs/Certificado 04_page-0001.jpg" alt="Certificado 4" onerror="this.parentElement.innerHTML=placeholderSVG()"/>
+          </div>
+          <div class="cert-info">
+            <div class="cert-meta">Alura · 2026</div>
+          </div>
+        </div>
+
+        <div class="cert-card" onclick="openLightbox('./src/assets/certs/Certificado 05_page-0001.jpg')">
+          <div class="cert-img-wrap">
+            <img src="./src/assets/certs/Certificado 05_page-0001.jpg" alt="Certificado 5" onerror="this.parentElement.innerHTML=placeholderSVG()"/>
+          </div>
+          <div class="cert-info">
+            <div class="cert-meta">Alura · 2026</div>
+          </div>
+        </div>
+
+        <div class="cert-card" onclick="openLightbox('./src/assets/certs/Certificado 06_page-0001.jpg')">
+          <div class="cert-img-wrap">
+            <img src="./src/assets/certs/Certificado 06_page-0001.jpg" alt="Certificado 6" onerror="this.parentElement.innerHTML=placeholderSVG()"/>
+          </div>
+          <div class="cert-info">
+            <div class="cert-meta">Alura · 2026</div>
+          </div>
+        </div>
+
+        <div class="cert-card" onclick="openLightbox('./src/assets/certs/Certificado 07_page-0001.jpg')">
+          <div class="cert-img-wrap">
+            <img src="./src/assets/certs/Certificado 07_page-0001.jpg" alt="Certificado 7" onerror="this.parentElement.innerHTML=placeholderSVG()"/>
+          </div>
+          <div class="cert-info">
+            <div class="cert-meta">Alura · 2026</div>
+          </div>
+        </div>
+
+        <div class="cert-card" onclick="openLightbox('./src/assets/certs/Certificado 09_page-0001.jpg')">
+          <div class="cert-img-wrap">
+            <img src="./src/assets/certs/Certificado 09_page-0001.jpg" alt="Certificado 9" onerror="this.parentElement.innerHTML=placeholderSVG()"/>
+          </div>
+          <div class="cert-info">
+            <div class="cert-meta">Alura · 2026</div>
+          </div>
+        </div>
+
+      </div>
+
+      <div class="carousel-dots" id="dots"></div>
+    </div>
+  </section>
+</div>
+
+<!-- LIGHTBOX -->
+<div class="lightbox" id="lightbox" onclick="closeLightbox()">
+  <button class="lightbox-close" onclick="closeLightbox()">✕</button>
+  <img id="lightbox-img" src="" alt="Certificado ampliado" onclick="event.stopPropagation()" />
+</div>
+
+<div class="divider"></div>
+
+<div class="wrap">
+  <section id="contato">
+    <p class="tag">// 06 — contato</p>
+    <h2>Vamos conversar</h2>
+    <div class="contact-grid">
+      <a class="contact-card" href="mailto:joaovictornog12@gmail.com">
+        <div class="contact-icon"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#e8ff47" stroke-width="2"><rect x="2" y="4" width="20" height="16" rx="2"/><path d="m22 7-8.97 5.7a1.94 1.94 0 0 1-2.06 0L2 7"/></svg></div>
+        <div><div class="contact-lbl">email</div><div class="contact-val">joaovictornog12@gmail.com</div></div>
+      </a>
+      <a class="contact-card" href="https://github.com/joaoestreano" target="_blank">
+        <div class="contact-icon"><svg width="16" height="16" viewBox="0 0 24 24" fill="#e8ff47"><path d="M12 0C5.37 0 0 5.37 0 12c0 5.3 3.438 9.8 8.205 11.385.6.113.82-.258.82-.577 0-.285-.01-1.04-.015-2.04-3.338.724-4.042-1.61-4.042-1.61-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.84 1.237 1.84 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.605-2.665-.3-5.466-1.332-5.466-5.93 0-1.31.465-2.38 1.235-3.22-.135-.303-.54-1.523.105-3.176 0 0 1.005-.322 3.3 1.23.96-.267 1.98-.399 3-.405 1.02.006 2.04.138 3 .405 2.28-1.552 3.285-1.23 3.285-1.23.645 1.653.24 2.873.12 3.176.765.84 1.23 1.91 1.23 3.22 0 4.61-2.805 5.625-5.475 5.92.42.36.81 1.096.81 2.22 0 1.606-.015 2.896-.015 3.286 0 .315.21.69.825.57C20.565 21.795 24 17.295 24 12c0-6.63-5.37-12-12-12"/></svg></div>
+        <div><div class="contact-lbl">github</div><div class="contact-val">joaoestreano</div></div>
+      </a>
+      <a class="contact-card" href="https://linkedin.com/in/joao-estreano" target="_blank">
+        <div class="contact-icon"><svg width="16" height="16" viewBox="0 0 24 24" fill="#e8ff47"><path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433a2.062 2.062 0 0 1-2.063-2.065 2.064 2.064 0 1 1 2.063 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/></svg></div>
+        <div><div class="contact-lbl">linkedin</div><div class="contact-val">joao-estreano</div></div>
+      </a>
+    </div>
+  </section>
+</div>
+
+<footer>© 2025 João Estreano — feito com código e café</footer>
+
+<script>
+  const carousel = document.getElementById('carousel')
+  const dotsContainer = document.getElementById('dots')
+  const cards = carousel.querySelectorAll('.cert-card')
+  const cardWidth = () => cards[0].offsetWidth + 14
+
+  cards.forEach((_, i) => {
+    const dot = document.createElement('button')
+    dot.className = 'dot' + (i === 0 ? ' active' : '')
+    dot.setAttribute('aria-label', `Certificado ${i + 1}`)
+    dot.onclick = () => goTo(i)
+    dotsContainer.appendChild(dot)
+  })
+
+  function updateDots() {
+    const idx = Math.round(carousel.scrollLeft / cardWidth())
+    dotsContainer.querySelectorAll('.dot').forEach((d, i) => d.classList.toggle('active', i === idx))
+  }
+  function scrollCarousel(dir) { carousel.scrollBy({ left: dir * cardWidth(), behavior: 'smooth' }) }
+  function goTo(idx) { carousel.scrollTo({ left: idx * cardWidth(), behavior: 'smooth' }) }
+  carousel.addEventListener('scroll', updateDots)
+
+  let startX = 0
+  carousel.addEventListener('touchstart', e => { startX = e.touches[0].clientX }, { passive: true })
+  carousel.addEventListener('touchend', e => {
+    const diff = startX - e.changedTouches[0].clientX
+    if (Math.abs(diff) > 40) scrollCarousel(diff > 0 ? 1 : -1)
+  })
+
+  function openLightbox(src) {
+    const img = document.getElementById('lightbox-img')
+    img.src = src
+    document.getElementById('lightbox').classList.add('open')
+    document.body.style.overflow = 'hidden'
+  }
+  function closeLightbox() {
+    document.getElementById('lightbox-img').src = ''
+    document.getElementById('lightbox').classList.remove('open')
+    document.body.style.overflow = ''
+  }
+  document.addEventListener('keydown', e => { if (e.key === 'Escape') closeLightbox() })
+
+  function placeholderSVG() {
+    return `<div class="cert-placeholder">
+      <svg width="36" height="36" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+        <rect x="3" y="3" width="18" height="18" rx="2"/><path d="M3 9h18M9 21V9"/>
+      </svg>
+      <span>imagem não encontrada</span>
+    </div>`
+  }
+</script>
+</body>
+</html>
